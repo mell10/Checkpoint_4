@@ -5,6 +5,7 @@ import MainPage from "./pages/MainPage/MainPage";
 import LanguagePage from "./pages/LanguagePage/LanguagePage";
 import PresentationPage from "./pages/PresentationPage/PresentationPage";
 import ProjectPage from "./pages/ProjectPage/ProjectPage";
+import AdminPage from "./pages/AdminPage/AdminPage";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
   {
     path: "/projet",
     element: <ProjectPage />,
+  },
+  {
+    path: "/admin",
+    element: <AdminPage />,
   },
 ]);
 
