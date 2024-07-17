@@ -1,18 +1,19 @@
+import { Link } from "react-router-dom";
 import "./MainPage.css";
 
 export default function MainPage() {
   return (
     <div className="main-page">
       <header className="header">
-        <button type="button" className="header-button">
+        <Link to="/langage" className="header-button">
           Langages
-        </button>
-        <button type="button" className="header-button">
+        </Link>
+        <Link to="/presentation" className="header-button">
           Présentation
-        </button>
-        <button type="button" className="header-button">
+        </Link>
+        <Link to="/admin" className="header-button">
           Admin
-        </button>
+        </Link>
       </header>
       <main className="content">
         <div className="profile-section">
