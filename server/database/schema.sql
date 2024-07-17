@@ -18,9 +18,7 @@ create table project (
   id int primary key auto_increment not null,
   name varchar(100) not null,
   description text not null,
-  link varchar(255) null,
-  user_id int not null,
-  foreign key(user_id) references user(id)
+  link varchar(255) null
 );
 
 create table language_project (

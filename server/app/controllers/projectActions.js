@@ -5,17 +5,17 @@ const tables = require("../../database/tables");
 const browse = async (req, res, next) => {
   try {
     // Fetch all items from the database
-    const items = await tables.item.readAll();
+    const project = await tables.project.readAll();
 
     // Respond with the items in JSON format
-    res.json(items);
+    res.json(project);
   } catch (err) {
     // Pass any errors to the error-handling middleware
     next(err);
   }
 };
 
-// The R of BREAD - Read operation
+/* The R of BREAD - Read operation
 const read = async (req, res, next) => {
   try {
     // Fetch a specific item from the database based on the provided ID
@@ -32,13 +32,13 @@ const read = async (req, res, next) => {
     // Pass any errors to the error-handling middleware
     next(err);
   }
-};
+}; */
 
 // The E of BREAD - Edit (Update) operation
 // This operation is not yet implemented
 
 // The A of BREAD - Add (Create) operation
-const add = async (req, res, next) => {
+/* const add = async (req, res, next) => {
   // Extract the item data from the request body
   const item = req.body;
 
@@ -52,7 +52,7 @@ const add = async (req, res, next) => {
     // Pass any errors to the error-handling middleware
     next(err);
   }
-};
+}; */
 
 // The D of BREAD - Destroy (Delete) operation
 // This operation is not yet implemented
@@ -60,8 +60,8 @@ const add = async (req, res, next) => {
 // Ready to export the controller functions
 module.exports = {
   browse,
-  read,
+  // read,
   // edit,
-  add,
+  // add,
   // destroy,
 };
