@@ -26,10 +26,11 @@ export default function MainPage() {
         </div>
         <div className="projects-section">
           <Link to="/projet">
-            <h1>Projets</h1>
+            <h2>Projets</h2>
           </Link>
         </div>
       </main>
+      <footer>Web & Web Mobile Développeur Junior</footer>
     </div>
   );
 }

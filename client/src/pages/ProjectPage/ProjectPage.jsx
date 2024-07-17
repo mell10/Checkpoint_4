@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import "./ProjectPage.css";
 
 export default function ProjectPage() {
@@ -12,14 +13,25 @@ export default function ProjectPage() {
 
   useEffect(() => {
     fetchProjects();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
   return (
     <div className="Project-page">
+      <header className="header2">
+        <Link to="/" className="back-button">
+          Retour
+        </Link>
+      </header>
       {projects.map((project) => (
         <div key={project.id}>
           <h1>{project.name}</h1>
           <p>{project.description}</p>
+          <p>
+            GitHub:
+            <a href={project.link} target="_blank" rel="noopener noreferrer">
+              {project.link}
+            </a>
+          </p>
         </div>
       ))}
     </div>

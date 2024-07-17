@@ -20,11 +20,3 @@ create table project (
   description text not null,
   link varchar(255) null
 );
-
-create table language_project (
-  language_id int not null,
-  foreign key(language_id) references language(id),
-  project_id int not null,
-  foreign key(project_id) references project(id)
-);
-

@@ -1,8 +1,26 @@
 @import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
 
-.content4 {
+.Project-page {
   flex: 1;
-  width: 100%;
   padding: 1rem 0;
   text-align: center;
+  width: 80%;
+  background-color: #efd9ce;
+  padding: 20px;
+  border-radius: 20px;
+  margin: 100px auto 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  border: 2px solid #3b429f;
+}
+
+p {
+  font-weight: bold;
+  font-family: "verdana";
+}
+
+a {
+  font-size: 0.9em;
+  word-wrap: break-word;
+  display: inline-block;
+  max-width: 100%;
 }
