@@ -1,0 +1,45 @@
+.main-page {
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
+.header {
+  display: flex;
+  justify-content: space-around;
+  background-color: #f8f9fa;
+  padding: 10px;
+}
+
+.header-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+  transition: background-color 0.3s;
+}
+
+.header-button:hover {
+  background-color: #e2e6ea;
+}
+
+.content {
+  margin: 20px 0;
+}
+
+.profile-section {
+  margin-bottom: 40px;
+}
+
+.profile-photo {
+  max-width: 200px;
+  border-radius: 50%;
+  margin-top: 10px;
+}
+
+.projects-section {
+  background-color: #f1f1f1;
+  padding: 20px;
+  border-radius: 8px;
+}
