@@ -10,7 +10,8 @@ create table language (
   id int primary key auto_increment not null,
   name varchar(100) not null,
   description text not null,
-  user_id int foreign key(user_id) references user(id) not null
+  user_id int not null,
+  foreign key(user_id) references user(id)
 );
 
 create table project (
@@ -18,11 +19,14 @@ create table project (
   name varchar(100) not null,
   description text not null,
   link varchar(255) null,
-  user_id int foreign key(user_id) references user(id) not null
+  user_id int not null,
+  foreign key(user_id) references user(id)
 );
 
 create table language_project (
-language_id int foreign key(user_id) references language(id) not null,
-project_id int foreign key(user_id) references project(id) not null
+  language_id int not null,
+  foreign key(language_id) references language(id),
+  project_id int not null,
+  foreign key(project_id) references project(id)
 );
 
