@@ -1,12 +1,28 @@
 create table user (
-  id int unsigned primary key auto_increment not null,
-  email varchar(255) not null unique,
-  password varchar(255) not null
+  id int primary key auto_increment not null,
+  firstname varchar(100) not null,
+  lastname varchar(100) not null,
+  password varchar(100) not null unique,
+  role varchar(100) not null
 );
 
-create table item (
-  id int unsigned primary key auto_increment not null,
-  title varchar(255) not null,
-  user_id int unsigned not null,
-  foreign key(user_id) references user(id)
+create table language (
+  id int primary key auto_increment not null,
+  name varchar(100) not null,
+  description text not null,
+  user_id int foreign key(user_id) references user(id) not null
 );
+
+create table project (
+  id int primary key auto_increment not null,
+  name varchar(100) not null,
+  description text not null,
+  link varchar(255) null,
+  user_id int foreign key(user_id) references user(id) not null
+);
+
+create table language_project (
+language_id int foreign key(user_id) references language(id) not null,
+project_id int foreign key(user_id) references project(id) not null
+);
+
