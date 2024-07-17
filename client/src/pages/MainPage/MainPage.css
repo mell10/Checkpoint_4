@@ -5,7 +5,6 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
-  font-family: Arial, sans-serif;
   background-color: #efd9ce;
 }
 
@@ -39,13 +38,10 @@ body {
   border: 1px solid #3b429f;
   border-radius: 10px;
   background-color: #3b429f;
-  transition: background-color 0.3s;
-  font-family: "Arial Black", Arial, sans-serif;
   font-weight: bold;
-}
-
-.header-button:hover {
-  background-color: #e2e6ea;
+  color: #ffff;
+  font-family: "verdana";
+  text-decoration: none;
 }
 
 .profile-section {
@@ -67,7 +63,7 @@ body {
   margin-top: 100px;
   margin-bottom: 10px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-  border: 2px solid #000000;
+  border: 2px solid #3b429f;
 }
 
 h1 {
