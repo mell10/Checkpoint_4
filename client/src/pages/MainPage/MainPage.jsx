@@ -25,7 +25,9 @@ export default function MainPage() {
           />
         </div>
         <div className="projects-section">
-          <h2>Projets</h2>
+          <Link to="/projet">
+            <h1>Projets</h1>
+          </Link>
         </div>
       </main>
     </div>
