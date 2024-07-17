@@ -24,7 +24,7 @@ export default function MainPage() {
           />
         </div>
         <div className="projects-section">
-          <h2>Mes Projets</h2>
+          <h2>Projets</h2>
         </div>
       </main>
     </div>
