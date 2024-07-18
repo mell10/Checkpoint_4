@@ -15,15 +15,35 @@ class LanguageSeeder extends AbstractSeeder {
     const languages = [
       {
         name: "JavaScript",
-        description: "Blah Blah",
+        description:
+          "Utilisé dans les projets Wildy Gamy, Lazy FLicks et Twistrip.",
       },
       {
-        name: "HTML",
-        description: "Blah",
+        name: "Html 5",
+        description:
+          "Utilisé dans les projets Wildy Gamy, Lazy FLicks et Twistrip.",
       },
       {
-        name: "CSS",
-        description: "Blah",
+        name: "Css 3",
+        description:
+          "Utilisé dans les projets Wildy Gamy, Lazy FLicks et Twistrip.",
+      },
+      {
+        name: "React",
+        description:
+          "Utilisé dans les projets Wildy Gamy, Lazy FLicks et Twistrip.",
+      },
+      {
+        name: "Mysql",
+        description: "Utilisé dans les projets Wildy Gamy et Twistrip.",
+      },
+      {
+        name: "Express.JS",
+        description: "Utilisé dans le projet Wildy Gamy.",
+      },
+      {
+        name: "Node.JS",
+        description: "Utilisé dans le projet Wildy Gamy.",
       },
     ];
 
