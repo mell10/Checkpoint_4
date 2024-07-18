@@ -22,7 +22,6 @@ export default function LanguagePage() {
         </Link>
       </header>
       <main className="content2">
-        <h1>Langages</h1>
         {languages.map((language) => (
           <div key={language.id}>
             <h1>{language.name}</h1>
