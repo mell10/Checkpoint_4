@@ -24,7 +24,7 @@ export default function LanguagePage() {
       <main className="content2">
         {languages.map((language) => (
           <div key={language.id}>
-            <h1>{language.name}</h1>
+            <h2>{language.name}</h2>
             <p>{language.description}</p>
           </div>
         ))}

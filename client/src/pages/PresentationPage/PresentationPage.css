@@ -19,3 +19,9 @@ p {
   text-align: justify;
   padding: 0 20px;
 }
+
+.cat-photo {
+  width: 100px; /* Adjust the width as needed */
+  height: auto;
+  margin-top: 20px; /* Adjust the margin as needed */
+}
