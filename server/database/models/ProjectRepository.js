@@ -26,17 +26,17 @@ class ProjectRepository extends AbstractRepository {
     return rows[0] || null;
   }
 
-  async createProject(project) {
+  async create(project) {
     // Execute the SQL INSERT query to create a new project
     const [result] = await this.database.query(
-      `INSERT INTO ${this.table} (name, description, link, user_id) VALUES (?, ?, ?, ?)`,
-      [project.name, project.description, project.link, project.user_id]
+      `INSERT INTO ${this.table} (name, description, link) VALUES (?, ?, ?)`,
+      [project.name, project.description, project.link]
     );
     // Return the id of the created project
     return result.insertId;
   }
 
-  async updateProject(id, project) {
+  async update(id, project) {
     // Execute the SQL UPDATE query to update a project by its id
     await this.database.query(
       `UPDATE ${this.table} SET name = ?, description = ?, link = ?, user_id = ? WHERE id = ?`,
@@ -44,7 +44,7 @@ class ProjectRepository extends AbstractRepository {
     );
   }
 
-  async deleteProject(id) {
+  async delete(id) {
     // Execute the SQL DELETE query to delete a project by its id
     await this.database.query(`DELETE FROM ${this.table} WHERE id = ?`, [id]);
   }

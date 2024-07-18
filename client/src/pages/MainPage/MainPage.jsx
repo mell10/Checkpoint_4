@@ -30,7 +30,7 @@ export default function MainPage() {
           </Link>
         </div>
       </main>
-      <footer>Web & Web Mobile Développeur Junior</footer>
+      <footer>Développeur Junior Web & Web Mobile</footer>
     </div>
   );
 }

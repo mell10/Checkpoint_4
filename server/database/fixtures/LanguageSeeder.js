@@ -18,11 +18,11 @@ class LanguageSeeder extends AbstractSeeder {
         description: "Blah Blah",
       },
       {
-        name: "HTML5",
+        name: "HTML",
         description: "Blah",
       },
       {
-        name: "CSS3",
+        name: "CSS",
         description: "Blah",
       },
     ];
