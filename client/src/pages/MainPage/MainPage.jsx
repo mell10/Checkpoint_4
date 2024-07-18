@@ -24,7 +24,7 @@ export default function MainPage() {
             className="profile-photo"
           />
         </div>
-        <div className="projects-section">
+        <div className="projects-section neon-border">
           <Link to="/projet">
             <h2>Projets</h2>
           </Link>
