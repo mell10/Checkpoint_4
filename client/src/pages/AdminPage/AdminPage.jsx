@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
 import "./AdminPage.css";
 
@@ -9,6 +9,26 @@ export default function AdminPage() {
   const [projectLink, setProjectLink] = useState("");
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
+  const [editMode, setEditMode] = useState(false);
+  const [editProjectId, setEditProjectId] = useState(null);
+  const [projects, setProjects] = useState([]);
+
+  const fetchProjects = useCallback(async () => {
+    try {
+      const response = await fetch(`${ApiUrl}/api/projects`);
+      if (!response.ok) {
+        throw new Error("Erreur lors de la récupération des projets");
+      }
+      const data = await response.json();
+      setProjects(data);
+    } catch (err) {
+      setError("Erreur de réseau lors de la récupération des projets");
+    }
+  }, [ApiUrl]);
+
+  useEffect(() => {
+    fetchProjects();
+  }, [fetchProjects]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -35,6 +55,7 @@ export default function AdminPage() {
         setProjectName("");
         setProjectDescription("");
         setProjectLink("");
+        fetchProjects();
       } else {
         const errorData = await response.json();
         setError(errorData.message || "Erreur lors de l'ajout du projet");
@@ -42,6 +63,53 @@ export default function AdminPage() {
     } catch (err) {
       setError("Erreur de réseau");
     }
+  };
+
+  const handleEdit = async (event) => {
+    event.preventDefault();
+    setError(null);
+    setSuccess(false);
+
+    const projectData = {
+      name: projectName,
+      description: projectDescription,
+      link: projectLink,
+    };
+
+    try {
+      const response = await fetch(`${ApiUrl}/api/projects/${editProjectId}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(projectData),
+      });
+
+      if (response.ok) {
+        setSuccess(true);
+        setProjectName("");
+        setProjectDescription("");
+        setProjectLink("");
+        setEditMode(false);
+        setEditProjectId(null);
+        fetchProjects();
+      } else {
+        const errorData = await response.json();
+        setError(
+          errorData.message || "Erreur lors de la modification du projet"
+        );
+      }
+    } catch (err) {
+      setError("Erreur de réseau");
+    }
+  };
+
+  const handleEditClick = (project) => {
+    setEditMode(true);
+    setEditProjectId(project.id);
+    setProjectName(project.name);
+    setProjectDescription(project.description);
+    setProjectLink(project.link);
   };
 
   return (
@@ -52,8 +120,11 @@ export default function AdminPage() {
         </Link>
       </header>
       <main className="content5">
-        <h1>Ajout de projet</h1>
-        <form onSubmit={handleSubmit} className="project-form">
+        <h1>{editMode ? "Modification de projet" : "Ajout de projet"}</h1>
+        <form
+          onSubmit={editMode ? handleEdit : handleSubmit}
+          className="project-form"
+        >
           <div className="form-group">
             <label htmlFor="projectName">Nom du projet</label>
             <input
@@ -83,10 +154,30 @@ export default function AdminPage() {
               required
             />
           </div>
-          <button type="submit">Ajouter le projet</button>
+          <button type="submit">
+            {editMode ? "Modifier le projet" : "Ajouter le projet"}
+          </button>
         </form>
         {error && <p className="error">{error}</p>}
-        {success && <p className="success">Projet ajouté avec succès !</p>}
+        {success && (
+          <p className="success">
+            Projet {editMode ? "modifié" : "ajouté"} avec succès !
+          </p>
+        )}
+        <div className="project-list">
+          {projects.map((project) => (
+            <div key={project.id} className="project-item">
+              <h2>{project.name}</h2>
+              <p>{project.description}</p>
+              <a href={project.link} target="_blank" rel="noopener noreferrer">
+                {project.link}
+              </a>
+              <button type="button" onClick={() => handleEditClick(project)}>
+                Modifier
+              </button>
+            </div>
+          ))}
+        </div>
       </main>
     </div>
   );

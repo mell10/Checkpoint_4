@@ -39,8 +39,8 @@ class ProjectRepository extends AbstractRepository {
   async update(id, project) {
     // Execute the SQL UPDATE query to update a project by its id
     await this.database.query(
-      `UPDATE ${this.table} SET name = ?, description = ?, link = ?, user_id = ? WHERE id = ?`,
-      [project.name, project.description, project.link, project.user_id, id]
+      `UPDATE ${this.table} SET name = ?, description = ?, link = ? WHERE id = ?`,
+      [project.name, project.description, project.link, id]
     );
   }
 
