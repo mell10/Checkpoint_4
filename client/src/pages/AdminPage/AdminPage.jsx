@@ -9,6 +9,7 @@ export default function AdminPage() {
   const [projectLink, setProjectLink] = useState("");
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
+  const [successMessage, setSuccessMessage] = useState(""); // Nouvel état pour le message de succès
   const [editMode, setEditMode] = useState(false);
   const [editProjectId, setEditProjectId] = useState(null);
   const [projects, setProjects] = useState([]);
@@ -34,6 +35,7 @@ export default function AdminPage() {
     event.preventDefault();
     setError(null);
     setSuccess(false);
+    setSuccessMessage(""); // Réinitialiser le message de succès
 
     const projectData = {
       name: projectName,
@@ -52,6 +54,7 @@ export default function AdminPage() {
 
       if (response.ok) {
         setSuccess(true);
+        setSuccessMessage("Projet ajouté avec succès !"); // Définir le message de succès
         setProjectName("");
         setProjectDescription("");
         setProjectLink("");
@@ -69,6 +72,7 @@ export default function AdminPage() {
     event.preventDefault();
     setError(null);
     setSuccess(false);
+    setSuccessMessage(""); // Réinitialiser le message de succès
 
     const projectData = {
       name: projectName,
@@ -87,6 +91,7 @@ export default function AdminPage() {
 
       if (response.ok) {
         setSuccess(true);
+        setSuccessMessage("Projet modifié avec succès !"); // Définir le message de succès
         setProjectName("");
         setProjectDescription("");
         setProjectLink("");
@@ -110,6 +115,35 @@ export default function AdminPage() {
     setProjectName(project.name);
     setProjectDescription(project.description);
     setProjectLink(project.link);
+  };
+
+  const handleDelete = async (projectId) => {
+    setError(null);
+    setSuccess(false);
+    setSuccessMessage(""); // Réinitialiser le message de succès
+
+    try {
+      const response = await fetch(`${ApiUrl}/api/projects/delete`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ id: projectId }),
+      });
+
+      if (response.ok) {
+        setSuccess(true);
+        setSuccessMessage("Projet supprimé avec succès !"); // Définir le message de succès
+        fetchProjects();
+      } else {
+        const errorData = await response.json();
+        setError(
+          errorData.message || "Erreur lors de la suppression du projet"
+        );
+      }
+    } catch (err) {
+      setError("Erreur de réseau");
+    }
   };
 
   return (
@@ -159,11 +193,8 @@ export default function AdminPage() {
           </button>
         </form>
         {error && <p className="error">{error}</p>}
-        {success && (
-          <p className="success">
-            Projet {editMode ? "modifié" : "ajouté"} avec succès !
-          </p>
-        )}
+        {success && <p className="success">{successMessage}</p>}{" "}
+        {/* Afficher le message de succès */}
         <div className="project-list">
           {projects.map((project) => (
             <div key={project.id} className="project-item">
@@ -174,6 +205,9 @@ export default function AdminPage() {
               </a>
               <button type="button" onClick={() => handleEditClick(project)}>
                 Modifier
+              </button>
+              <button type="button" onClick={() => handleDelete(project.id)}>
+                Supprimer
               </button>
             </div>
           ))}
