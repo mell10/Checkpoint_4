@@ -9,9 +9,7 @@ create table user (
 create table language (
   id int primary key auto_increment not null,
   name varchar(100) not null,
-  description text not null,
-  user_id int not null,
-  foreign key(user_id) references user(id)
+  description text not null
 );
 
 create table project (
